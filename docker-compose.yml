@@ -5,15 +5,15 @@ services:
     image: postgres
     container_name: postgres-container
     environment:
-      POSTGRES_USER: admin
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: coffee_machine
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-      - my-network
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+#    networks:
+#      - my-network
 #  spring-app:
 #    image: openjdk:17-jdk-alpine
 #    container_name: spring-app
