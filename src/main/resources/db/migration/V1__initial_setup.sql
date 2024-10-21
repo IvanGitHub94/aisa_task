@@ -18,7 +18,7 @@ coffee_machine_id integer references coffee_machines(id)
 CREATE TABLE orders(
 id serial primary key,
 coffee_machine_id integer references coffee_machines(id),
-coffee_id integer,
+coffee_id integer references coffee(id),
 create_date timestamp without time zone
 );
 
@@ -34,6 +34,6 @@ INSERT INTO coffee VALUES
 (4, 'custom1', 81, 10, 30, 1),
 (5, 'custom2', 150, 20, 10, 1);
 
-insert into orders VALUES
-(1, 1, 1, '2024-05-04 00:42:03.464797')
+--insert into orders VALUES
+--(1, 1, 1, '2024-05-04 00:42:03.464797')
 
