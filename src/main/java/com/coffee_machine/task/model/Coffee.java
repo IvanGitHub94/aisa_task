@@ -9,12 +9,11 @@ import lombok.*;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "coffee_standard")
+@Table(name = "coffee")
 public class Coffee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     @Column(name = "recipe_name")
@@ -28,4 +27,10 @@ public class Coffee {
 
     @Column(name = "coffee_grams", nullable = false)
     private Integer coffeeGrams;
+
+    @ManyToOne
+    @JoinColumn(name = "coffee_machine_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private CoffeeMachine coffeeMachine;
 }

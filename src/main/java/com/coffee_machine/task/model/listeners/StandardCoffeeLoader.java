@@ -1,17 +1,23 @@
 package com.coffee_machine.task.model.listeners;
 
 import com.coffee_machine.task.model.CoffeeMachine;
-import com.coffee_machine.task.repository.CoffeeRepository;
-import lombok.RequiredArgsConstructor;
+import com.coffee_machine.task.service.CoffeeService;
+import jakarta.persistence.PostLoad;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class StandardCoffeeLoader {
 
-    private final CoffeeRepository coffeeRepository;
+    @Lazy
+    @Autowired
+    private CoffeeService coffeeService;
 
+    @PostLoad
     public void loadStandardCoffee(CoffeeMachine coffeeMachine) {
-        coffeeMachine.setRecipesStandard(coffeeRepository.findAll());
+        coffeeMachine.getRecipes().addAll(coffeeService.findAllStandardRecipes());
     }
+
+
 }

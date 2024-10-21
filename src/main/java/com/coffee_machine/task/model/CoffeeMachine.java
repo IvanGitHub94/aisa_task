@@ -7,6 +7,8 @@ import lombok.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,68 +31,9 @@ public class CoffeeMachine {
     @Column(name = "trash_grams")
     private Integer trashGrams;
 
-    @OneToMany
-    private List<Coffee> recipesStandard;
-
     @OneToMany(mappedBy = "coffeeMachine")
-    private List<CoffeeCustom> recipesCustom;
+    private List<Coffee> recipes;
 
     @OneToMany(mappedBy = "coffeeMachine")
     private List<Order> orderList;
-
-    public Integer getWaterMl() {
-        return waterMl;
-    }
-
-    public void setWaterMl(Integer waterMl) {
-        this.waterMl = waterMl;
-    }
-
-    public Integer getMilkMl() {
-        return milkMl;
-    }
-
-    public void setMilkMl(Integer milkMl) {
-        this.milkMl = milkMl;
-    }
-
-    public Integer getCoffeeGrams() {
-        return coffeeGrams;
-    }
-
-    public void setCoffeeGrams(Integer coffeeGrams) {
-        this.coffeeGrams = coffeeGrams;
-    }
-
-    public Integer getTrashGrams() {
-        return trashGrams;
-    }
-
-    public void setTrashGrams(Integer trashGrams) {
-        this.trashGrams = trashGrams;
-    }
-
-    public List<CoffeeCustom> getRecipesCustom() {
-        return recipesCustom;
-    }
-
-    public void setRecipesCustom(List<CoffeeCustom> recipesCustom) {
-        this.recipesCustom = recipesCustom;
-    }
-
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
-    public List<Coffee> getRecipesStandard() {
-        return recipesStandard;
-    }
-
-    public void setRecipesStandard(List<Coffee> recipesStandard) {
-        this.recipesStandard = recipesStandard;
-    }
 }

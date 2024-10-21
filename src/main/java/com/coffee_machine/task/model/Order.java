@@ -27,7 +27,4 @@ public class Order {
 
     @Column(name = "create_date")
     private LocalDateTime createDate;
-
-    @Column(name = "is_custom_coffee")
-    private boolean isCustomCoffee;
 }
