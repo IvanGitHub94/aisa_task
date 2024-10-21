@@ -3,6 +3,8 @@ package com.coffee_machine.task.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -14,8 +16,8 @@ import lombok.*;
 public class Coffee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @Column(name = "recipe_name")
     private String recipeName;

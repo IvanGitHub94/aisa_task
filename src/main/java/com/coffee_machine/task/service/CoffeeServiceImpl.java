@@ -78,13 +78,21 @@ public class CoffeeServiceImpl implements CoffeeService {
 
     @Override
     public String addCoffee(CoffeeDto coffeeDto) {
+        // TODO пока без учета удаления из бд
+        // TODO валидировать кофе дто
+        long customRecipesCount = coffeeRepository.countByCoffeeMachineIsNotNull();
+
         Coffee coffee = Coffee.builder()
+                .recipeName("custom" + ++customRecipesCount)
                 .waterMl(coffeeDto.waterMl())
                 .milkMl(coffeeDto.milkMl())
                 .coffeeGrams(coffeeDto.coffeeGrams())
+                .coffeeMachine(coffeeMachineFactory.getCoffeeMachine())
                 .build();
 
-        return "";
+        coffeeRepository.save(coffee);
+
+        return String.format("%s saved", coffee.getRecipeName());
     }
 
     private List<String> getStandardCoffeeNames() {

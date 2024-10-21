@@ -13,4 +13,6 @@ public interface CoffeeRepository extends JpaRepository<Coffee, Long> {
     List<Coffee> findByRecipeNameIn(List<String> recipeNames);
 
     Optional<Coffee> findByRecipeName(String recipeName);
+
+    long countByCoffeeMachineIsNotNull();
 }

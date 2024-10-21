@@ -18,7 +18,7 @@ public class CoffeeMachineFactory {
 
     public CoffeeMachine getCoffeeMachine() {
         if (Objects.isNull(coffeeMachine)) {
-            coffeeMachine = coffeeMachineRepository.findById(1L).orElseThrow(() -> new IllegalArgumentException("Кофемашины с id 1 не существует"));
+            coffeeMachine = coffeeMachineRepository.findAll().get(0);
         }
         return coffeeMachine;
     }
