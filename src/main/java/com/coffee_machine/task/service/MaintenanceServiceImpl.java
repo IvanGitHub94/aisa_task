@@ -19,10 +19,11 @@ public class MaintenanceServiceImpl implements MaintenanceService{
     private final CoffeeMachineRepository coffeeMachineRepository;
 
     @Override
-    public String addIngredient(IngredientDto ingredientDto/*, String coffeeMachineUUID*/) {
+    public String addIngredient(IngredientDto ingredientDto) {
 
-        CoffeeMachine coffeeMachine = coffeeMachineRepository.findAll().get(0); // TODO сделать по айди машины
+        CoffeeMachine coffeeMachine = coffeeMachineRepository.findAll().get(0);
 
+        // TODO вместо мапы сделать 2 поля Consumer и Supplier
         Map<String, Consumer<Integer>> setters = new HashMap<>();
         Map<String, Supplier<Integer>> getters = new HashMap<>();
 
@@ -60,7 +61,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 
     @Override
     public String removeTrash() {
-        CoffeeMachine coffeeMachine = coffeeMachineRepository.findAll().get(0); // TODO сделать по айди машины
+        CoffeeMachine coffeeMachine = coffeeMachineRepository.findAll().get(0);
         coffeeMachine.setTrashGrams(0);
         coffeeMachineRepository.save(coffeeMachine);
         return "Trash removed!";

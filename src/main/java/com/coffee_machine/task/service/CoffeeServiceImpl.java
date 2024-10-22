@@ -22,6 +22,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CoffeeServiceImpl implements CoffeeService {
 
+    @Value("${coffee.limit.per.hour}")
+    private int coffeeLimitPerHour;
+
     @Value("${trash.limit}")
     private int trashLimit;
 
@@ -44,6 +47,7 @@ public class CoffeeServiceImpl implements CoffeeService {
     @Override
     public String prepareCoffee(String coffeeName) {
         CoffeeMachine coffeeMachine = coffeeMachineFactory.getCoffeeMachine();
+        checkOrdersLimitPerHour(coffeeMachine);
         Coffee coffee = coffeeRepository.findByRecipeName(coffeeName).orElseThrow(() -> new IllegalArgumentException("Invalid coffee name."));
         if (coffeeMachine.getWaterMl() < coffee.getWaterMl()) {
             throw new IllegalArgumentException("Please, add some water.");
@@ -74,6 +78,13 @@ public class CoffeeServiceImpl implements CoffeeService {
         coffeeMachineRepository.save(coffeeMachine);
 
         return String.format("Your %s is ready", coffeeName);
+    }
+
+    private void checkOrdersLimitPerHour(CoffeeMachine coffeeMachine) {
+        int countOfOrdersInLastHour = orderRepository.countByCoffeeMachineAndCreateDateAfter(coffeeMachine, LocalDateTime.now().minusHours(1));
+        if (countOfOrdersInLastHour >= coffeeLimitPerHour) {
+            throw new IllegalArgumentException("Too much coffee for current hour!");
+        }
     }
 
     @Override
