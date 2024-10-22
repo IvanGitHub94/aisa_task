@@ -1,7 +1,6 @@
 package com.coffee_machine.task.service;
 
 import com.coffee_machine.task.dto.CoffeeDto;
-import com.coffee_machine.task.enums.StandardCoffeeType;
 import com.coffee_machine.task.model.Coffee;
 
 import java.util.Collection;

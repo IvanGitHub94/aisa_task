@@ -95,6 +95,7 @@ public class CoffeeServiceImpl implements CoffeeService {
         return String.format("%s saved", coffee.getRecipeName());
     }
 
+    // TODO
     private List<String> getStandardCoffeeNames() {
         return Arrays.stream(StandardCoffeeType.values()).map(StandardCoffeeType::getName).collect(Collectors.toList());
     }

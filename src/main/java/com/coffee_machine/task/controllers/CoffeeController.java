@@ -1,7 +1,6 @@
 package com.coffee_machine.task.controllers;
 
 import com.coffee_machine.task.dto.CoffeeDto;
-import com.coffee_machine.task.enums.StandardCoffeeType;
 import com.coffee_machine.task.service.CoffeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
