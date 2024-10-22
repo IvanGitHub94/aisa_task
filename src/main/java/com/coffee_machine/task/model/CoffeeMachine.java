@@ -4,7 +4,6 @@ import com.coffee_machine.task.model.listeners.StandardCoffeeLoader;
 import com.coffee_machine.task.values.Values;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.UUID;

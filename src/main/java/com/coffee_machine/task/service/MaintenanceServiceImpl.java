@@ -3,6 +3,7 @@ package com.coffee_machine.task.service;
 import com.coffee_machine.task.dto.IngredientDto;
 import com.coffee_machine.task.model.CoffeeMachine;
 import com.coffee_machine.task.repository.CoffeeMachineRepository;
+import com.coffee_machine.task.values.Values;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +27,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         Map<String, Supplier<Integer>> getters = new HashMap<>();
 
         switch (ingredientDto.ingredientName()) {
-            case "water" -> {
-                getters.put("water", coffeeMachine::getWaterMl);
-                setters.put("water", coffeeMachine::setWaterMl);
+            case Values.WATER -> {
+                getters.put(ingredientDto.ingredientName(), coffeeMachine::getWaterMl);
+                setters.put(ingredientDto.ingredientName(), coffeeMachine::setWaterMl);
             }
-            case "milk" -> {
-                getters.put("milk", coffeeMachine::getMilkMl);
-                setters.put("milk", coffeeMachine::setMilkMl);
+            case Values.MILK -> {
+                getters.put(ingredientDto.ingredientName(), coffeeMachine::getMilkMl);
+                setters.put(ingredientDto.ingredientName(), coffeeMachine::setMilkMl);
             }
-            case "coffee" -> {
-                getters.put("coffee", coffeeMachine::getCoffeeGrams);
-                setters.put("coffee", coffeeMachine::setCoffeeGrams);
+            case Values.COFFEE -> {
+                getters.put(ingredientDto.ingredientName(), coffeeMachine::getCoffeeGrams);
+                setters.put(ingredientDto.ingredientName(), coffeeMachine::setCoffeeGrams);
             }
             default -> throw new IllegalArgumentException("Unknown ingredient");
         }
