@@ -23,7 +23,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 
         CoffeeMachine coffeeMachine = coffeeMachineRepository.findAll().get(0);
 
-        // TODO вместо мапы сделать 2 поля Consumer и Supplier
         Map<String, Consumer<Integer>> setters = new HashMap<>();
         Map<String, Supplier<Integer>> getters = new HashMap<>();
 
